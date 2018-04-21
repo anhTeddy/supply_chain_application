@@ -1,0 +1,32 @@
+html
+  head
+    title Supply Chain Application
+    link rel='shortcut icon'    href='/favicon.ico'
+    link rel='apple-touch-icon' href='/apple-touch-icon.png'
+    meta http-equiv='x-ua-compatible' content='ie=edge'
+    meta name='viewport'    content='width=device-width, initial-scale=1'
+    meta name='turbolinks-cache-control' content='no-cache'
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', data: {'turbolinks-track': 'reload'}
+    = action_cable_meta_tag
+    = javascript_include_tag 'application', data: {'turbolinks-track': 'reload'}
+  body
+    div.all-wrapper.menu-side 
+      div.layout-w
+        = render 'layouts/menu_mobile'
+        = render 'layouts/menu_desktop'
+        div.content-w
+          ul.breadcrumb
+            / - breadcrumbs.each do |breadcrumb|
+            li.breadcrumb-item
+              a href=''
+          div.content-i
+            .content-box
+              - flash.each do |name, msg|
+                - if msg.is_a?(String)
+                  div class= "alert alert-dismissable alert-#{alert_class name}"
+                    a.close data-dismiss='alert' aria-hidden='true' ×
+                    span.flash-icon class="fa fa-#{name == 'notice' ? 'info-circle' : 'warning'}"
+                    = content_tag :div, msg, :id => "flash_#{name}"
+              = yield
+      div.display-type
