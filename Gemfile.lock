@@ -53,6 +53,8 @@ GEM
     crass (1.0.4)
     erubis (2.7.0)
     execjs (2.7.0)
+    faraday (0.13.1)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.23)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -78,12 +80,11 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.13.1)
+    multipart-post (2.0.0)
     nio4r (2.3.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     puma (3.11.4)
-    rabl (0.13.1)
-      activesupport (>= 2.3.14)
     rack (2.0.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -170,11 +171,11 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
+  faraday
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
   puma (~> 3.0)
-  rabl
   rails (~> 5.0.7)
   sass-rails (~> 5.0)
   slim-rails

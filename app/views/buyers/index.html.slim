@@ -17,26 +17,29 @@ div.element-wrapper
                   option value="code-asc" Code(A to Z)
                   option value="code-desc" Code(Z to A)
         div.col-sm-12.padding-left15
-          a.btn.btn-success.btn-medium.margin-top10 href=''
+          a.btn.btn-success.btn-medium.margin-top10 href= new_buyer_path
             i.fa.fa-plus.padding-right-5
             | Create
 
     div.table-responsive
-      table.table.table-lightborder.table-bordered on_scroll_to_bottom="append()"
+      table.table.table-lightborder.table-bordered
         thead
           tr
-            th Name
-            th Code
-            th
+            th Id
+            th First Name
+            th Last Name
+            th 
         tbody
-          tr
-            td.text-center
-            td.text-center
-            td.text-center.width-200
-              div
-                = link_to '', class: 'btn btn-warning btn-medium margin-right5' do
-                  i.fa.fa-pencil.padding-right-5
-                  | Edit
-                = link_to 'javascript:;', class: 'btn btn-danger btn-medium', 'confirm-delete' => '' do
-                  i.fa.fa-remove.padding-right-5
-                  | Delete
+          - @buyers.each do |buyer|
+            tr
+              td.text-center=buyer['buyerId']
+              td.text-center=buyer['firstName']
+              td.text-center=buyer['lastName']
+              td.text-center.width-200
+                div
+                  = link_to edit_buyer_path(id: buyer['buyerId']), class: 'btn btn-warning btn-medium margin-right5' do
+                    i.fa.fa-pencil.padding-right-5
+                    | Edit
+                  = link_to buyer_path(action: :destroy, id: buyer['buyerId']), method: :delete, class: 'btn btn-danger btn-medium' do
+                    i.fa.fa-remove.padding-right-5
+                    | Delete
