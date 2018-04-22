@@ -13,6 +13,8 @@
 #= require jquery
 #= require jquery_ujs
 #= require turbolinks
+#= require jquery.dataTables
 #= require dataTables.bootstrap4
+#= require daterangepicker
 #= require light-admin
 #= require_tree ./channels

@@ -36,82 +36,82 @@ $(function () {
 
   // #1. CHAT APP
 
-  $('.floated-chat-btn, .floated-chat-w .chat-close').on('click', function () {
-    $('.floated-chat-w').toggleClass('active');
-    return false;
-  });
+  // $('.floated-chat-btn, .floated-chat-w .chat-close').on('click', function () {
+  //   $('.floated-chat-w').toggleClass('active');
+  //   return false;
+  // });
 
-  $('.message-input').on('keypress', function (e) {
-    if (e.which == 13) {
-      $('.chat-messages').append('<div class="message self"><div class="message-content">' + $(this).val() + '</div></div>');
-      $(this).val('');
-      var $messages_w = $('.floated-chat-w .chat-messages');
-      $messages_w.scrollTop($messages_w.prop("scrollHeight"));
-      $messages_w.perfectScrollbar('update');
-      return false;
-    }
-  });
+  // $('.message-input').on('keypress', function (e) {
+  //   if (e.which == 13) {
+  //     $('.chat-messages').append('<div class="message self"><div class="message-content">' + $(this).val() + '</div></div>');
+  //     $(this).val('');
+  //     var $messages_w = $('.floated-chat-w .chat-messages');
+  //     $messages_w.scrollTop($messages_w.prop("scrollHeight"));
+  //     $messages_w.perfectScrollbar('update');
+  //     return false;
+  //   }
+  // });
 
-  $('.floated-chat-w .chat-messages').perfectScrollbar();
+  // $('.floated-chat-w .chat-messages').perfectScrollbar();
 
   // #2. CALENDAR INIT
 
-  if ($("#fullCalendar").length) {
-    var calendar, d, date, m, y;
+  // if ($("#fullCalendar").length) {
+  //   var calendar, d, date, m, y;
 
-    date = new Date();
+  //   date = new Date();
 
-    d = date.getDate();
+  //   d = date.getDate();
 
-    m = date.getMonth();
+  //   m = date.getMonth();
 
-    y = date.getFullYear();
+  //   y = date.getFullYear();
 
-    calendar = $("#fullCalendar").fullCalendar({
-      header: {
-        left: "prev,next today",
-        center: "title",
-        right: "month,agendaWeek,agendaDay"
-      },
-      selectable: true,
-      selectHelper: true,
-      select: function select(start, end, allDay) {
-        var title;
-        title = prompt("Event Title:");
-        if (title) {
-          calendar.fullCalendar("renderEvent", {
-            title: title,
-            start: start,
-            end: end,
-            allDay: allDay
-          }, true);
-        }
-        return calendar.fullCalendar("unselect");
-      },
-      editable: true,
-      events: [{
-        title: "Long Event",
-        start: new Date(y, m, 3, 12, 0),
-        end: new Date(y, m, 7, 14, 0)
-      }, {
-        title: "Lunch",
-        start: new Date(y, m, d, 12, 0),
-        end: new Date(y, m, d + 2, 14, 0),
-        allDay: false
-      }, {
-        title: "Click for Google",
-        start: new Date(y, m, 28),
-        end: new Date(y, m, 29),
-        url: "http://google.com/"
-      }]
-    });
-  }
+  //   calendar = $("#fullCalendar").fullCalendar({
+  //     header: {
+  //       left: "prev,next today",
+  //       center: "title",
+  //       right: "month,agendaWeek,agendaDay"
+  //     },
+  //     selectable: true,
+  //     selectHelper: true,
+  //     select: function select(start, end, allDay) {
+  //       var title;
+  //       title = prompt("Event Title:");
+  //       if (title) {
+  //         calendar.fullCalendar("renderEvent", {
+  //           title: title,
+  //           start: start,
+  //           end: end,
+  //           allDay: allDay
+  //         }, true);
+  //       }
+  //       return calendar.fullCalendar("unselect");
+  //     },
+  //     editable: true,
+  //     events: [{
+  //       title: "Long Event",
+  //       start: new Date(y, m, 3, 12, 0),
+  //       end: new Date(y, m, 7, 14, 0)
+  //     }, {
+  //       title: "Lunch",
+  //       start: new Date(y, m, d, 12, 0),
+  //       end: new Date(y, m, d + 2, 14, 0),
+  //       allDay: false
+  //     }, {
+  //       title: "Click for Google",
+  //       start: new Date(y, m, 28),
+  //       end: new Date(y, m, 29),
+  //       url: "http://google.com/"
+  //     }]
+  //   });
+  // }
 
   // #3. FORM VALIDATION
 
-  if ($('#formValidate').length) {
-    $('#formValidate').validator();
-  }
+  // if ($('#formValidate').length) {
+  //   $('#formValidate').validator();
+  // }
 
   // #4. DATE RANGE PICKER
 
@@ -511,24 +511,24 @@ $(function () {
   }
 
   // #14. FULL CHAT APP
-  function add_full_chat_message($input) {
-    $('.chat-content').append('<div class="chat-message self"><div class="chat-message-content-w"><div class="chat-message-content">' + $input.val() + '</div></div><div class="chat-message-date">1:23pm</div><div class="chat-message-avatar"><img alt="" src="img/avatar1.jpg"></div></div>');
-    $input.val('');
-    var $messages_w = $('.chat-content-w');
-    $messages_w.scrollTop($messages_w.prop("scrollHeight"));
-    $messages_w.perfectScrollbar('update');
-  }
+  // function add_full_chat_message($input) {
+  //   $('.chat-content').append('<div class="chat-message self"><div class="chat-message-content-w"><div class="chat-message-content">' + $input.val() + '</div></div><div class="chat-message-date">1:23pm</div><div class="chat-message-avatar"><img alt="" src="img/avatar1.jpg"></div></div>');
+  //   $input.val('');
+  //   var $messages_w = $('.chat-content-w');
+  //   $messages_w.scrollTop($messages_w.prop("scrollHeight"));
+  //   $messages_w.perfectScrollbar('update');
+  // }
 
-  $('.chat-content-w').perfectScrollbar({ wheelPropagation: true });
+  // $('.chat-content-w').perfectScrollbar({ wheelPropagation: true });
 
-  $('.chat-btn a').on('click', function () {
-    add_full_chat_message($('.chat-input input'));
-    return false;
-  });
-  $('.chat-input input').on('keypress', function (e) {
-    if (e.which == 13) {
-      add_full_chat_message($(this));
-      return false;
-    }
-  });
+  // $('.chat-btn a').on('click', function () {
+  //   add_full_chat_message($('.chat-input input'));
+  //   return false;
+  // });
+  // $('.chat-input input').on('keypress', function (e) {
+  //   if (e.which == 13) {
+  //     add_full_chat_message($(this));
+  //     return false;
+  //   }
+  // });
 });
