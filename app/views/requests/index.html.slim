@@ -1,0 +1,54 @@
+div.element-wrapper
+  h6.element-header Request List
+  div.element-box      
+    div.controls-above-table
+      div.row
+        div.col-sm-12
+          form.form-inline.justify-content-sm-start.form-filter-full-width.padding-left5
+            div.col-sm-3
+              div.form-group.full-width-span
+                input.form-control.rounded.bright type="text" placeholder="Name or Code"
+            div.col-sm-3
+              div.form-group.full-width-span
+                select.form-control.rounded.bright.js-no-dynamic-data-arrangement-select2
+                  option value="" selected="selected" Sort by
+                  option value="name-asc" Name(A to Z)
+                  option value="name-desc" Name(Z to A)
+                  option value="code-asc" Code(A to Z)
+                  option value="code-desc" Code(Z to A)
+        / div.col-sm-12.padding-left15
+        /   a.btn.btn-success.btn-medium.margin-top10 href= new_request_path
+        /     i.fa.fa-plus.padding-right-5
+        /     | Create
+
+    div.table-responsive
+      table.table.table-lightborder.table-bordered
+        thead
+          tr
+            th Id
+            th Coffee Type
+            th Quantity In KG
+            th Max Price
+            th Region
+            th Date To Recieve
+            th Buyer
+            th 
+        tbody
+          - @requests.each do |request|
+            tr
+              td.text-center=request['requestId']
+              td.text-center=request['coffeeType']
+              td.text-center=request['quantityInKg']
+              td.text-center=request['maxPrice']
+              td.text-center=request['region']
+              td.text-center=request['dateToReceive']
+              td.text-center=request['buyer']
+              td.text-center.width-200
+                div
+                  / = link_to edit_request_path(id: request['requestId']), class: 'btn btn-warning btn-medium margin-right5' do
+                  /   i.fa.fa-pencil.padding-right-5
+                  /   | Edit
+                  a.btn.btn-success.btn-medium.margin-right5.delete-btn href='#' data = {href: '/growers/offer_to_buyer', request: request['requestId'], target: '#offer-detail', toggle: 'modal'} title='Delete'
+                    i.fa.fa-check.padding-right-5
+                    | Offer
+                    

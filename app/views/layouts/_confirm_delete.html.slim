@@ -1,0 +1,16 @@
+#confirm-delete.modal.fade aria-hidden='true' role='dialog' tabindex='-1' 
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-hidden='true' data-dismiss= 'modal' type='button' x
+        h4#confirmDeleteLabel.modal-title Delete 
+      .modal-body
+        p Do you want to delete ?
+      .modal-footer
+        form#form-delete method='post' 
+          = hidden_field_tag 'authenticity_token', form_authenticity_token
+          = hidden_field_tag '_method', 'delete'
+          button.btn.btn-primary.margin-right5 type="submit" Delete
+          button.btn.btn-secondary.margin-right5 data-dismiss="modal" type="button" Cancel
+          / button.btn.btn-default.filter data-dismiss='modal' type='button'  Cancel
+          / button.btn.btn-circle.btn-icon-only.btn-default.btn-color.filter.pull-right type='submit'  Delete

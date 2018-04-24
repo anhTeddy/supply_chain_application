@@ -1,0 +1,44 @@
+#offer-detail.modal.fade aria-hidden='true' role='dialog' tabindex='-1' 
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-hidden='true' data-dismiss= 'modal' type='button' x
+        h4#confirmDeleteLabel.modal-title New Offer
+      .element-box
+        h5.form-header     
+        form#form-offer-detail method='post'   
+          .modal-body
+            div.element-wrapper 
+              div.element-box
+                fieldset.form-group
+                  legend
+                    span Offer Detail
+                div.row.no-margin
+                  div.col-sm-12
+                    div.form-group
+                      label Offer ID
+                      =text_field_tag 'offerId', nil, class: 'form-control'
+                div.row.no-margin      
+                  div.col-sm-12
+                    div.form-group
+                      label Price
+                      =number_field_tag 'price', nil, class: 'form-control'        
+                div.row.no-margin
+                  div.col-sm-12
+                    div.form-group
+                      label Request ID
+                      =text_field_tag 'requestId', nil, class: 'form-control', id: 'request-id-for-offer'
+                div.row.no-margin      
+                  div.col-sm-12
+                    div.form-group
+                      label Grower
+                      =text_field_tag 'grower', nil, class: 'form-control'
+                div.row.no-margin      
+                  div.col-sm-12
+                    div.form-group
+                      label Transaction ID
+                      =text_field_tag 'transactionId', nil, class: 'form-control'           
+          .modal-footer
+            = hidden_field_tag 'authenticity_token', form_authenticity_token
+            button.btn.btn-primary.margin-right5 type="submit" href='#' Offer
+            button.btn.btn-secondary.margin-right5 data-dismiss="modal" href='#' type="button" Cancel

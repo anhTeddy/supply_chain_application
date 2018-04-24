@@ -10,10 +10,24 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require bootstrap
  *= require jquery.dataTables
  *= require dataTables.bootstrap4
  *= require daterangepicker
  *= require light-admin
+ *= require font-awesome
  *= require_tree .
  *= require_self
  */
+
+.margin-right5{
+    margin-right: 5px;
+}
+
+.padding-right-5{
+    padding-right: 5px;
+}
+
+.no-padding {
+    padding: 0px;
+}

@@ -12,9 +12,24 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require tether
+#= require bootstrap
 #= require turbolinks
 #= require jquery.dataTables
 #= require dataTables.bootstrap4
+#= require moment
 #= require daterangepicker
 #= require light-admin
 #= require_tree ./channels
+
+
+$(document).on('ready page:load', () ->
+    $('#confirm-delete').on 'show.bs.modal', (e) ->
+        $(this).find('#form-delete').attr 'action', $(e.relatedTarget).data('href')
+        return
+    $('#offer-detail').on 'show.bs.modal', (e) ->
+        $(this).find('#form-offer-detail').attr 'action', $(e.relatedTarget).data('href')
+        console.log $(e.relatedTarget).data('request')     
+        $(this).find('#request-id-for-offer').val $(e.relatedTarget).data('request')
+        return    
+)        

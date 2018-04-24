@@ -40,6 +40,9 @@ div.element-wrapper
                   = link_to edit_buyer_path(id: buyer['buyerId']), class: 'btn btn-warning btn-medium margin-right5' do
                     i.fa.fa-pencil.padding-right-5
                     | Edit
-                  = link_to buyer_path(action: :destroy, id: buyer['buyerId']), method: :delete, class: 'btn btn-danger btn-medium' do
+                  / = render 'shared/edit_delete_buttons', :locals => { edit_path: edit_arbitrary_path(arbitrary), delete_path: arbitrary_path(arbitrary, authenticity_token: form_authenticity_token) }
+                  a.btn.btn-danger.btn-medium.margin-right5.delete-btn data = {href: buyer_path(action: :destroy, id: buyer['buyerId']), target: '#confirm-delete', toggle: 'modal'} title='Delete'
                     i.fa.fa-remove.padding-right-5
                     | Delete
+                  / = link_to buyer_path(action: :destroy, id: buyer['buyerId']), method: :delete, class: 'btn btn-danger btn-medium' do
+                    

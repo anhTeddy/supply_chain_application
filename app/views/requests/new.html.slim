@@ -1,0 +1,57 @@
+div.row
+  div.col-sm-12
+    div.element-wrapper
+      h6.element-header New Request 
+      div.element-box
+        div.os-tabs-w
+          div.tab-content
+            div.tab-pane.active
+                =form_tag('/requests/create_without_id', method: :post) do
+                  fieldset.form-group
+                    legend
+                      span Request Information
+                  div.row.no-margin
+                    div.col-sm-4
+                      div.form-group
+                        label Request ID
+                        =text_field_tag 'requestId', nil, class: 'form-control'
+                    div.col-sm-4
+                      div.form-group
+                        label Coffee Type
+                        =text_field_tag 'coffeeType', nil, class: 'form-control'
+                    div.col-sm-2
+                      div.form-group
+                        label Quantity In KG
+                        =number_field_tag 'quantityInKg', nil, class: 'form-control'
+                    div.col-sm-2
+                      div.form-group
+                        label Max Price
+                        =number_field_tag 'maxPrice', nil, class: 'form-control'    
+                  div.row.no-margin
+                    div.col-sm-4
+                      div.form-group
+                        label Region
+                        =text_field_tag 'region', nil, class: 'form-control'
+                    div.col-sm-4
+                      div.form-group
+                        label Recieve Date
+                        =text_field_tag 'dateToReceive', nil, class: 'single-daterange form-control'
+                    div.col-sm-4
+                      div.form-group
+                        label Buyer
+                        =text_field_tag 'buyer', nil, class: 'form-control'      
+                  div.row.no-margin
+                    div.col-sm-12.text-right.no-padding.pull-right
+                      button.btn.btn-primary.btn-medium
+                        i.fa.fa-save.padding-right-5 Create                         
+javascript:
+  $( document ).on('turbolinks:load', function() {
+    $('input.single-daterange').daterangepicker({
+      "singleDatePicker": true,
+      locale: {
+        format: 'YYYY-MM-DD'
+      },
+      startDate: (new Date()).getDate(),
+      endDate: '2020-12-31'
+    });
+  })          
