@@ -17,38 +17,66 @@ div.element-wrapper
                   option value="code-asc" Code(A to Z)
                   option value="code-desc" Code(Z to A)
         / div.col-sm-12.padding-left15
-        /   a.btn.btn-success.btn-medium.margin-top10 href= new_request_path
+        /   a.btn.btn-success.btn-sm.margin-top10 href= new_request_path
         /     i.fa.fa-plus.padding-right-5
         /     | Create
-
-    div.table-responsive
-      table.table.table-lightborder.table-bordered
-        thead
-          tr
-            th Id
-            th Coffee Type
-            th Quantity In KG
-            th Max Price
-            th Region
-            th Date To Recieve
-            th Buyer
-            th 
-        tbody
-          - @requests.each do |request|
-            tr
-              td.text-center=request['requestId']
-              td.text-center=request['coffeeType']
-              td.text-center=request['quantityInKg']
-              td.text-center=request['maxPrice']
-              td.text-center=request['region']
-              td.text-center=request['dateToReceive']
-              td.text-center=request['buyer']
-              td.text-center.width-200
-                div
-                  / = link_to edit_request_path(id: request['requestId']), class: 'btn btn-warning btn-medium margin-right5' do
-                  /   i.fa.fa-pencil.padding-right-5
-                  /   | Edit
-                  a.btn.btn-success.btn-medium.margin-right5.delete-btn href='#' data = {href: '/growers/offer_to_buyer', request: request['requestId'], target: '#offer-detail', toggle: 'modal'} title='Delete'
-                    i.fa.fa-check.padding-right-5
-                    | Offer
-                    
+    .os-tabs-w
+      .os-tabs-controls
+        ul.nav.nav-tabs.smaller
+          li.nav-item
+            a.nav-link.active aria-expanded="true" data-toggle="tab" href="#tab_request_list"  Request List
+          li.nav-item
+            a.nav-link aria-expanded="false" data-toggle="tab" href="#tab_accepted_request_list"  Accepted Offer List
+      .tab-content
+        #tab_request_list.tab-pane.active aria-expanded="true"
+          div.table-responsive
+            table.table.table-lightborder.table-bordered
+              thead
+                tr
+                  th Id
+                  th Coffee Type
+                  th Quantity In KG
+                  th Max Price
+                  th Region
+                  th Date To Recieve
+                  th Buyer
+                  th 
+              tbody
+                - @requests.each do |request|
+                  tr
+                    td.text-center=request['requestId']
+                    td.text-center=request['coffeeType']
+                    td.text-center=request['quantityInKg']
+                    td.text-center=request['maxPrice']
+                    td.text-center=request['region']
+                    td.text-center=request['dateToReceive']
+                    td.text-center=request['buyer']
+                    td.text-center.width-200
+                      div
+                        / = link_to edit_request_path(id: request['requestId']), class: 'btn btn-warning btn-sm margin-right5' do
+                        /   i.fa.fa-pencil.padding-right-5
+                        /   | Edit
+                        - if request['offered'] == false
+                          a.btn.btn-success.btn-sm.margin-right5.delete-btn href='#' data = {href: '/growers/offer_to_buyer', request: request['requestId'], target: '#offer-detail', toggle: 'modal'} title='Delete'
+                            i.fa.fa-check.padding-right-5
+                            | Offer
+                        - else
+                          | Offered    
+        #tab_accepted_request_list.tab-pane aria-expanded="false"
+          div.table-responsive
+            table.table.table-lightborder.table-bordered
+              thead
+                tr
+                  th Id
+                  th Price
+                  th Request
+                  th Grower
+              tbody
+                - @offers.each do |offer|
+                  - if offer['accepted'] == true
+                    tr
+                      td.text-center=offer['offerId']
+                      td.text-center=offer['price']
+                      td.text-center=offer['request']
+                      td.text-center=offer['grower']        
+                      

@@ -1,0 +1,59 @@
+div.element-wrapper
+  h6.element-header Grower List
+  div.element-box      
+    / div.controls-above-table
+    /   div.row
+    /     div.col-sm-12
+    /       form.form-inline.justify-content-sm-start.form-filter-full-width.padding-left5
+    /         div.col-sm-3
+    /           div.form-group.full-width-span
+    /             input.form-control.rounded.bright type="text" placeholder="Name or Code"
+    /         div.col-sm-3
+    /           div.form-group.full-width-span
+    /             select.form-control.rounded.bright.js-no-dynamic-data-arrangement-select2
+    /               option value="" selected="selected" Sort by
+    /               option value="name-asc" Name(A to Z)
+    /               option value="name-desc" Name(Z to A)
+    /               option value="code-asc" Code(A to Z)
+    /               option value="code-desc" Code(Z to A)
+        / div.col-sm-12.padding-left15
+        /   a.btn.btn-success.btn-sm.margin-top10 href= new_buyer_path
+        /     i.fa.fa-plus.padding-right-5
+        /     | Create
+
+    div.table-responsive
+      table.table.table-lightborder.table-bordered
+        thead
+          tr
+            th Grower ID
+            th First Name
+            th Last Name
+            th Farm Name
+            th Farm Altitude
+            th Farm Region
+            th Coffee Types
+            th
+        tbody
+          - @growers.each do |grower|
+            tr
+              td.text-center=grower['growerId']
+              td.text-center=grower['firstName']
+              td.text-center=grower['lastName']
+              td.text-center=grower['farmName']
+              td.text-center=grower['farmAltitude']
+              td.text-center=grower['farmRegion']
+              td.text-center=grower['coffeeTypes']
+              td.text-center.width-200
+                div
+                  - if grower['hasCertificate'] == false
+                    a.btn.btn-sm.btn-success.margin-right5.delete-btn href='#' data = {href: '/regulators/issue_certificate', grower: grower['growerId'], target: '#issue-certificate', toggle: 'modal'} title='Issue Certificate'
+                      i.fa.fa-check.padding-right-5
+                      | Issue
+                  - else
+                    i.fa.fa-check.padding-right-5
+                    | Issued  
+                    a.btn.btn-sm.btn-danger.margin-right5.delete-btn href='#' data = {href: '/regulators/cancel_certificate', certificate: grower['certificate']['certificateId'], target: '#cancel-certificate', toggle: 'modal'} title='Cancel Certificate'
+                      i.fa.fa-remove.padding-right-5
+                      | Cancel
+                   
+                    

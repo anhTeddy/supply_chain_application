@@ -1,0 +1,26 @@
+div.row
+  div.col-sm-12
+    div.element-wrapper
+      h6.element-header= "#{@regulator['regulatorId']} Setting" 
+      div.element-box
+        div.os-tabs-w
+          div.tab-content
+            div.tab-pane.active
+              =form_tag('/regulators/' + @regulator['regulatorId'], method: :put) do
+                fieldset.form-group
+                  legend
+                    span Basic Information
+                div.row.no-margin
+                  div.col-sm-4
+                    div.form-group
+                      label First Name
+                      =text_field_tag 'firstName', @regulator['firstName'], class: 'form-control'
+                  div.col-sm-8
+                    div.form-group
+                      label Last Name
+                      =text_field_tag 'lastName', @regulator['lastName'], class: 'form-control'
+                div.row.form-buttons-w-top.no-margin
+                      div.col-md-12.text-right.no-padding.pull-right
+                        button.btn.btn-primary.btn-medium
+                          i.fa.fa-save.padding-right-5 Update      
+          

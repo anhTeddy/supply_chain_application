@@ -1,36 +1,25 @@
-class RequestsController < ApplicationController
+class OffersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
   before_action :default_breadcrumbs, except: [:destroy]
 
   def index
-    grower_user_id = 'g001'
-    response = Faraday.get 'http://localhost:3000/api/org.coffeechain.Request'
-    puts '------------------------'
-    puts response.body
-    puts '------------------------'
-    requests = JSON.parse response.body
     response = Faraday.get 'http://localhost:3000/api/org.coffeechain.Offer'
     puts '------------------------'
     puts response.body
     puts '------------------------'
     @offers = JSON.parse response.body
-    @requests = requests.map do |request|
-      request['offered'] = false
-      @offers.each do |offer|
-        if (offer['grower'].include? grower_user_id) && (offer['request'].include? request['requestId'])
-          request['offered'] = true
-          break
-        end    
-      end
-      request 
-    end      
+    response = Faraday.get 'http://localhost:3000/api/org.coffeechain.Offer'
+    puts '------------------------'
+    puts response.body
+    puts '------------------------'
+    @offers = JSON.parse response.body
   end
 
   def show
-    response = Faraday.get 'http://localhost:3000/api/org.coffeechain.Request'
-    @requests = JSON.parse response.body
-    puts '------------------------request detail--------'
-    puts @requests
+    response = Faraday.get 'http://localhost:3000/api/org.coffeechain.Offer'
+    @offers = JSON.parse response.body
+    puts '------------------------offer detail--------'
+    puts @offers
     puts '------------------------'
   end
 
@@ -39,10 +28,10 @@ class RequestsController < ApplicationController
   end
 
   def edit
-    response = Faraday.get('http://localhost:3000/api/org.coffeechain.Request/' + params[:id])
-    @request = JSON.parse response.body
-    puts '------------------------request with id: ' + @request['requestId'] + '----------'
-    puts @request
+    response = Faraday.get('http://localhost:3000/api/org.coffeechain.Offer/' + params[:id])
+    @offer = JSON.parse response.body
+    puts '------------------------offer with id: ' + @offer['offerId'] + '----------'
+    puts @offer
     puts '------------------------'
     # breadcrumbs << {path: edit_dashboard_customer_path(@customer), title: 'Edit'}
   end
@@ -54,11 +43,11 @@ class RequestsController < ApplicationController
   def create_without_id
     conn = Faraday.new(:url => 'http://localhost:3000')
     conn.post do |req|
-      req.url ('/api/org.coffeechain.Request')
+      req.url ('/api/org.coffeechain.Offer')
       req.headers['Content-Type'] = 'application/json'
       req.body = {
-        "$class": "org.coffeechain.Request",
-        "requestId": params[:requestId],
+        "$class": "org.coffeechain.Offer",
+        "offerId": params[:offerId],
         "coffeeType": params[:coffeeType],
         "quantityInKg": params[:quantityInKg],
         "maxPrice": params[:maxPrice],
@@ -67,29 +56,29 @@ class RequestsController < ApplicationController
         "buyer": params[:buyer] 
       }.to_json
     end  
-    redirect_to requests_path
-  end  
+    redirect_to offers_path
+  end 
 
   def update
     conn = Faraday.new(:url => 'http://localhost:3000')
     conn.put do |req|
-      req.url ('/api/org.coffeechain.Request/' + params[:id])
+      req.url ('/api/org.coffeechain.Offer/' + params[:id])
       req.headers['Content-Type'] = 'application/json'
       req.body = {
-        "$class": "org.coffeechain.Request",
+        "$class": "org.coffeechain.Offer",
         "firstName": params[:firstName],
         "lastName": params[:lastName],
       }.to_json
     end
-    redirect_to requests_path
+    redirect_to offers_path
   end
 
   def destroy
     conn = Faraday.new(:url => 'http://localhost:3000')
     conn.delete do |req|
-      req.url ('/api/org.coffeechain.Request/' + params[:id])
+      req.url ('/api/org.coffeechain.Offer/' + params[:id])
     end
-    redirect_to requests_path
+    redirect_to offers_path
   end
 
   private

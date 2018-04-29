@@ -5,15 +5,85 @@ div.desktop-menu.menu-side-compact-w.menu-activated-on-hover.color-scheme-dark
   div.menu-and-user
     div.logged-user-w
       div.avatar-w
-
+        img src="/img/avatar1.jpg"
     ul.main-menu
       li.has-sub-menu
         a
           div.icon-w
-            i.fa.fa-user
+              i.fa.fa-plus
         div.sub-menu-w
-          div.sub-menu-title User Management
+          div.sub-menu-title Request
           div.sub-menu-icon
-            i.fa.fa-user
+            i.fa.fa-tint
           div.sub-menu-i
-            ul.sub-menu          
+            ul.sub-menu
+              li
+                a href=new_request_path target="_blank" New Request          
+              li
+                a href=requests_path target="_blank" Request List
+      li.has-sub-menu
+        a
+          div.icon-w
+              i.fa.fa-align-justify   
+        div.sub-menu-w       
+          div.sub-menu-title Offer 
+          div.sub-menu-icon
+            i.fa.fa-align-justify
+          div.sub-menu-i
+            ul.sub-menu
+              li
+                a href=new_offer_path target="_blank" New Offer          
+              li
+                a href=offers_path target="_blank" Offer List     
+      li.has-sub-menu
+        a
+          div.icon-w
+              i.fa.fa-coffee    
+        div.sub-menu-w            
+          div.sub-menu-title Grower
+          div.sub-menu-icon
+            i.fa.fa-coffee
+          div.sub-menu-i
+            ul.sub-menu
+              li
+                a href=new_grower_path target="_blank" New Grower          
+              li
+                a href=growers_path target="_blank" Grower List
+              li
+                a href=requests_path target="_blank" List of Request       
+      li.has-sub-menu
+        a
+          div.icon-w
+              i.fa.fa-money   
+        div.sub-menu-w            
+          div.sub-menu-title Buyer
+          div.sub-menu-icon
+            i.fa.fa-money
+          div.sub-menu-i
+            ul.sub-menu
+              li
+                a href=new_buyer_path target="_blank" New Buyer          
+              li
+                a href=buyers_path target="_blank" Buyer List
+              li
+                a href=get_offer_for_owning_request_buyers_path target="_blank" List of Request 
+              li
+                a href=get_success_transaction_buyers_path target="_blank" Transaction History  
+              li
+                a href=get_barcode_buyers_path target="_blank" Generate Barcode     
+      li.has-sub-menu
+        a
+          div.icon-w
+              i.fa.fa-certificate   
+        div.sub-menu-w            
+          div.sub-menu-title Regulator
+          div.sub-menu-icon
+            i.fa.fa-certificate
+          div.sub-menu-i
+            ul.sub-menu
+              li
+                a href=new_buyer_path target="_blank" New Regulator          
+              li
+                a href=buyers_path target="_blank" Regulator List
+              li
+                a href=get_grower_list_regulators_path target="_blank" List of Grower                    

@@ -1,5 +1,5 @@
 div.element-wrapper
-  h6.element-header Buyers
+  h6.element-header Regulators
   div.element-box      
     div.controls-above-table
       div.row
@@ -17,7 +17,7 @@ div.element-wrapper
                   option value="code-asc" Code(A to Z)
                   option value="code-desc" Code(Z to A)
         div.col-sm-12.padding-left15
-          a.btn.btn-success.btn-medium.margin-top10 href= new_buyer_path
+          a.btn.btn-success.btn-sm.margin-top10 href= new_regulator_path
             i.fa.fa-plus.padding-right-5
             | Create
 
@@ -30,18 +30,18 @@ div.element-wrapper
             th Last Name
             th 
         tbody
-          - @buyers.each do |buyer|
+          - @regulators.each do |regulator|
             tr
-              td.text-center=buyer['buyerId']
-              td.text-center=buyer['firstName']
-              td.text-center=buyer['lastName']
+              td.text-center=regulator['regulatorId']
+              td.text-center=regulator['firstName']
+              td.text-center=regulator['lastName']
               td.text-center.width-200
                 div
-                  = link_to edit_buyer_path(id: buyer['buyerId']), class: 'btn btn-warning btn-sm margin-right5' do
+                  = link_to edit_regulator_path(id: regulator['regulatorId']), class: 'btn btn-warning btn-sm margin-right5' do
                     i.fa.fa-pencil.padding-right-5
                     | Edit
                   / = render 'shared/edit_delete_buttons', :locals => { edit_path: edit_arbitrary_path(arbitrary), delete_path: arbitrary_path(arbitrary, authenticity_token: form_authenticity_token) }
-                  a.btn.btn-danger.btn-sm.margin-right5.delete-btn data = {href: buyer_path(action: :destroy, id: buyer['buyerId']), target: '#confirm-delete', toggle: 'modal'} title='Delete'
+                  a.btn.btn-danger.btn-sm.margin-right5.delete-btn data = {href: regulator_path(action: :destroy, id: regulator['regulatorId']), target: '#confirm-delete', toggle: 'modal'} title='Delete'
                     i.fa.fa-remove.padding-right-5
                     | Delete
                   

@@ -1,0 +1,98 @@
+div.element-wrapper
+  h6.element-header Your Request List
+  div.element-box      
+    / div.controls-above-table
+    /   div.row
+    /     div.col-sm-12
+    /       form.form-inline.justify-content-sm-start.form-filter-full-width.padding-left5
+    /         div.col-sm-3
+    /           div.form-group.full-width-span
+    /             input.form-control.rounded.bright type="text" placeholder="Name or Code"
+    /         div.col-sm-3
+    /           div.form-group.full-width-span
+    /             select.form-control.rounded.bright.js-no-dynamic-data-arrangement-select2
+    /               option value="" selected="selected" Sort by
+    /               option value="name-asc" Name(A to Z)
+    /               option value="name-desc" Name(Z to A)
+    /               option value="code-asc" Code(A to Z)
+    /               option value="code-desc" Code(Z to A)
+        / div.col-sm-12.padding-left15
+        /   a.btn.btn-success.btn-medium.margin-top10 href= new_buyer_path
+        /     i.fa.fa-plus.padding-right-5
+        /     | Create
+    - @requests.each do |request|
+      .row
+        .col-sm-2
+          .element-wrapper
+            h6.element-header
+              | Request Info
+            .element-box.el-tablo
+              .label
+                | Request ID
+              .value
+                |
+                = request['requestId']
+            .element-box.el-tablo
+              .label
+                | Coffee Type
+              .value
+                |
+                = request['coffeeType']
+            .element-box.el-tablo
+              .label
+                | Quantity In KG
+              .value
+                |
+                = request['quantityInKg']
+            .element-box.el-tablo
+              .label
+                | Max Price
+              .value
+                |
+                = request['maxPrice']   
+            .element-box.el-tablo
+              .label
+                | Region
+              .value
+                |
+                = request['region']    
+            .element-box.el-tablo
+              .label
+                | Date To Recieve
+              .value
+                |
+                = request['dateToRecieve']      
+        .col-sm-10
+          .element-wrapper
+            h6.element-header
+              | Offer List Info
+            .element-box
+              div.table-responsive
+                table.table.table-lightborder.table-bordered
+                  thead
+                    tr
+                      th Id
+                      th Price
+                      th Grower
+                      th 
+                  tbody
+                    - request['offers'].each do |offer|
+                      tr
+                        td.text-center=offer['offerId']
+                        td.text-center=offer['price']
+                        td.text-center=offer['grower']
+                        td.text-center.width-200
+                          div
+                            - if offer['accepted'] == false
+                              a.btn.btn-success.btn-medium.margin-right5.delete-btn href='#' data = {href: '/buyers/accept_offer', offer: offer['offerId'], target: '#confirm-offer', toggle: 'modal'} title='Accept Offer'
+                                i.fa.fa-check.padding-right-5
+                                | Accept
+                            - else
+                              i.fa.fa-check.padding-right-5
+                              | Accepted  
+                            / = render 'shared/edit_delete_buttons', :locals => { edit_path: edit_arbitrary_path(arbitrary), delete_path: arbitrary_path(arbitrary, authenticity_token: form_authenticity_token) }
+                            / a.btn.btn-danger.btn-medium.margin-right5.delete-btn data = {href: buyer_path(action: :destroy, id: buyer['buyerId']), target: '#confirm-delete', toggle: 'modal'} title='Delete'
+                            /   i.fa.fa-remove.padding-right-5
+                            /   | Delete
+                   
+                    

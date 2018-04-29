@@ -28,8 +28,19 @@ $(document).on('ready page:load', () ->
         $(this).find('#form-delete').attr 'action', $(e.relatedTarget).data('href')
         return
     $('#offer-detail').on 'show.bs.modal', (e) ->
-        $(this).find('#form-offer-detail').attr 'action', $(e.relatedTarget).data('href')
-        console.log $(e.relatedTarget).data('request')     
+        $(this).find('#form-offer-detail').attr 'action', $(e.relatedTarget).data('href')  
         $(this).find('#request-id-for-offer').val $(e.relatedTarget).data('request')
-        return    
+        return
+    $('#confirm-offer').on 'show.bs.modal', (e) ->
+        $(this).find('#form-confirm-offer').attr 'action', $(e.relatedTarget).data('href') 
+        $(this).find('#offer-accept-id').val $(e.relatedTarget).data('offer') 
+        return
+    $('#issue-certificate').on 'show.bs.modal', (e) ->
+        $(this).find('#form-issue-certificate').attr 'action', $(e.relatedTarget).data('href') 
+        $(this).find('#form-grower-id').val $(e.relatedTarget).data('grower') 
+        return   
+    $('#cancel-certificate').on 'show.bs.modal', (e) ->
+        $(this).find('#form-cancel-certificate').attr 'action', $(e.relatedTarget).data('href') 
+        $(this).find('#form-certificate-id').val $(e.relatedTarget).data('certificate') 
+        return               
 )        

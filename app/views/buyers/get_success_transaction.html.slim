@@ -1,0 +1,37 @@
+div.element-wrapper
+  h6.element-header Successful Transaction
+  div.element-box      
+    div.table-responsive
+      table.table.table-lightborder.table-bordered
+        thead
+          tr
+            th Request Coffee Type
+            th Quantity In Kg
+            th Grower Id
+            th Grower Name
+            th Grower Farm Name
+            th Grower Farm Altitude
+            th Grower Farm Region
+            th Grower Certificate
+        tbody
+          - @transactions.each do |transaction|
+            tr
+              td.text-center=transaction['requestCoffeeType']
+              td.text-center=transaction['requestQuantityInKg']
+              td.text-center=transaction['growerId']
+              td.text-center=transaction['growerName']
+              td.text-center=transaction['growerFarmName']
+              td.text-center=transaction['growerFarmAltitude']
+              td.text-center=transaction['growerFarmRegion']
+              td.text-left
+                .el-legend
+                  - transaction['growerCertificate'].each do |gCer|
+                    .legend-value-w
+                      .legend-pin style=("background-color: #6896f9;") 
+                      .legend-value
+                        | 
+                        =gCer
+
+
+                  
+                    

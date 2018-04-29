@@ -38,18 +38,6 @@ class GrowersController < ApplicationController
   def offer_to_buyer
     conn = Faraday.new(:url => 'http://localhost:3000')
     conn.post do |req|
-      req.url ('/api/org.coffeechain.Offer')
-      req.headers['Content-Type'] = 'application/json'
-      req.body = {
-        "$class": "org.coffeechain.Offer",
-        "offerId": params[:offerId],
-        "price": params[:price],
-        "accepted": 'false',
-        "request": params[:requestId],
-        "grower": params[:grower]
-      }.to_json
-    end 
-    conn.post do |req|
       req.url ('/api/org.coffeechain.SendOffer')
       req.headers['Content-Type'] = 'application/json'
       req.body = {
@@ -57,9 +45,7 @@ class GrowersController < ApplicationController
         "request": params[:requestId],
         "grower": params[:grower],
         "offerId": params[:offerId],
-        "price": 0,
-        "transactionId": params[:transactionId],
-        "timestamp": Time.now.strftime("yyyy-mm-dd")
+        "price": params[:price]
       }.to_json
     end 
     redirect_to requests_path

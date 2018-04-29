@@ -13,13 +13,8 @@ html
   body
     div.all-wrapper.menu-side 
       div.layout-w
-        = render 'layouts/menu_mobile'
         = render 'layouts/menu_desktop'
         div.content-w
-          ul.breadcrumb
-            / - breadcrumbs.each do |breadcrumb|
-            li.breadcrumb-item
-              a href=''
           div.content-i
             .content-box
               - flash.each do |name, msg|
@@ -31,4 +26,7 @@ html
               = yield
       div.display-type
   = render 'layouts/confirm_delete'
+  = render 'layouts/accept_offer'
   = render 'layouts/offer_detail'
+  = render 'layouts/issue_certificate'
+  = render 'layouts/cancel_certificate'

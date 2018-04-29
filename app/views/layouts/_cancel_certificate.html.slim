@@ -1,0 +1,29 @@
+#cancel-certificate.modal.fade aria-hidden='true' role='dialog' tabindex='-1' 
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-hidden='true' data-dismiss= 'modal' type='button' x
+        h4.modal-title Issue Certificate
+      .element-box
+        h5.form-header     
+        form#form-cancel-certificate method='post'   
+          .modal-body
+            div.element-wrapper 
+              div.element-box
+                fieldset.form-group
+                  legend
+                    span Certificate Info
+                div.row.no-margin
+                  div.col-sm-12
+                    div.form-group
+                      label Certificate ID
+                      =text_field_tag 'certificateId', nil, class: 'form-control', id: 'form-certificate-id', readonly: true      
+                div.row.no-margin
+                  div.col-sm-12
+                    div.form-group
+                      label Description
+                      =text_area_tag 'description', nil, class: 'form-control', rows: '10'        
+          .modal-footer
+            = hidden_field_tag 'authenticity_token', form_authenticity_token
+            button.btn.btn-primary.margin-right5 type="submit" href='#' Cancel
+            button.btn.btn-secondary.margin-right5 data-dismiss="modal" href='#' type="button" Close
