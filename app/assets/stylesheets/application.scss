@@ -33,9 +33,13 @@
 }
 
 .barby-cell.on {
+    width: 15px;
+    height: 15px;
     background-color: black
 }
 
 .barby-cell.off {
+    width: 15px;
+    height: 15px;
     background-color: white
 }
