@@ -1,7 +1,21 @@
 div.row
-  div.col-sm-12
+  div.col-sm-6
     div.element-wrapper
       h6.element-header Barcode
       div.element-box
-        =@barcode
+        = @barcode
+  .col-sm-6
+    div.element-wrapper
+      h6.element-header Information
+      div.element-box
+        =form_tag('/buyers/get_barcode', method: :get) do
+          div.row.no-margin
+            div.col-sm-4
+              div.form-group
+                label Buyer ID
+                =text_field_tag 'buyerId', nil, class: 'form-control'
+          div.row
+            div.col-sm-4.text-right
+              button.btn.btn-primary.btn-medium
+                i.fa.fa-save.margin-right-5 Create      
         

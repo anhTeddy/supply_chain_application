@@ -117,7 +117,11 @@ class BuyersController < ApplicationController
   end  
 
   def get_barcode
-    barcode = Barby::QrCode.new 'http://localhost:3001/buyers/get_success_transaction'
+    if params[:buyerId] != nil
+      barcode = Barby::QrCode.new ('http://localhost:3001/buyers/get_success_transaction/' + params[:buyerId])
+    else  
+      barcode = Barby::QrCode.new 'http://localhost:3001/buyers/get_success_transaction'
+    end
     @barcode = Barby::HtmlOutputter.new(barcode).to_html.html_safe
   end  
   
