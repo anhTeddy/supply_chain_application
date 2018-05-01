@@ -86,7 +86,8 @@ class BuyersController < ApplicationController
     response = Faraday.get 'http://localhost:3000/api/org.coffeechain.Offer'
     offers = JSON.parse response.body
     response = Faraday.get 'http://localhost:3000/api/org.coffeechain.Request'
-    requests = JSON.parse response.body
+    requests = JSON.parse response.body  
+
     @transactions = transactions.map do |trans|
       offer = offers.detect do |offer|
         trans['offer'].include? offer['offerId']
@@ -119,6 +120,12 @@ class BuyersController < ApplicationController
         end  
       end  
       trans
+    end 
+    
+    if params[:buyerId] != nil
+      @transactions = @transactions.select do |trans|
+        trans['buyerId'] == params[:buyerId]
+      end  
     end  
   end  
 

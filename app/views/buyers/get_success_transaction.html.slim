@@ -1,6 +1,15 @@
 div.element-wrapper
   h6.element-header Successful Transaction
-  div.element-box      
+  div.element-box
+    div.controls-above-table
+      div.row
+        div.col-sm-12
+          =form_tag('get_success_transaction', method: :get, class: 'form-inline justify-content-sm-start form-filter-full-width padding-left5') 
+            div.col-sm-3
+              div.form-group.full-width-span
+                input.form-control.bright name="buyerId" type="text" placeholder="Buyer Id"
+                button.btn.btn-primary.btn-medium.margin-right5 href=''
+                  i.fa.fa-search.padding-right-5 
     div.table-responsive
       table.table.table-lightborder.table-bordered
         thead
