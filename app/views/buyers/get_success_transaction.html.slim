@@ -5,6 +5,8 @@ div.element-wrapper
       table.table.table-lightborder.table-bordered
         thead
           tr
+            th Buyer Id
+            th Buyer Name
             th Request Coffee Type
             th Quantity In Kg
             th Grower Id
@@ -16,6 +18,8 @@ div.element-wrapper
         tbody
           - @transactions.each do |transaction|
             tr
+              td.text-center=transaction['buyerId']
+              td.text-center=transaction['buyerName']
               td.text-center=transaction['requestCoffeeType']
               td.text-center=transaction['requestQuantityInKg']
               td.text-center=transaction['growerId']
@@ -26,8 +30,7 @@ div.element-wrapper
               td.text-left
                 .el-legend
                   - transaction['growerCertificate'].each do |gCer|
-                    .legend-value-w
-                      .legend-pin style=("background-color: #6896f9;") 
+                    .legend-value-w 
                       .legend-value
                         | 
                         =gCer

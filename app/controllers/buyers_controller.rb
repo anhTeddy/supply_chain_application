@@ -73,11 +73,12 @@ class BuyersController < ApplicationController
   end
 
   def get_success_transaction
-    buyer_user_id = "b001"
     response = Faraday.get 'http://localhost:3000/api/org.coffeechain.AcceptOffer'
     transactions = JSON.parse response.body
     response = Faraday.get 'http://localhost:3000/api/org.coffeechain.Grower'
     growers = JSON.parse response.body
+    response = Faraday.get 'http://localhost:3000/api/org.coffeechain.Buyer'
+    buyers = JSON.parse response.body
     response = Faraday.get 'http://localhost:3000/api/org.coffeechain.Certificate'
     certificates = JSON.parse response.body
     response = Faraday.get 'http://localhost:3000/api/org.coffeechain.Regulator'
@@ -92,12 +93,17 @@ class BuyersController < ApplicationController
       end 
       request = requests.detect do |request|
         offer['request'].include? request['requestId']
+      end  
+      buyer = buyers.detect do |buyer|
+        request['buyer'].include? buyer['buyerId']
       end   
       grower = growers.detect do |grower|
         offer['grower'].include? grower['growerId']
       end
       trans['requestQuantityInKg'] = request['quantityInKg']
       trans['requestCoffeeType'] = request['coffeeType']
+      trans['buyerId'] = buyer['buyerId']
+      trans['buyerName'] = buyer['firstName'] + ' ' + buyer['lastName']
       trans['growerId'] = grower['growerId']
       trans['growerName'] = grower['firstName'] + ' ' + grower['lastName']
       trans['growerFarmName'] = grower['FarmName']
